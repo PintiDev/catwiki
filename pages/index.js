@@ -19,7 +19,7 @@ const Index = ({ catBreeds }) => {
       {/* Section Hero 1 */}
       <article
         style={{ backgroundImage: "url('/heroimagelg.png')" }}
-        className=" bg-bottom bg-cover w-full rounded-tr-[4rem] rounded-tl-[4rem] px-20 h-[30rem] flex overflow-hidden"
+        className=" bg-bottom bg-cover w-full rounded-tr-[4rem] rounded-tl-[4rem] px-20 h-[30rem] flex "
       >
         <div className="w-[28%]  h-full flex flex-col justify-center items-start">
           <div className=" invert mb-2">
@@ -33,7 +33,7 @@ const Index = ({ catBreeds }) => {
       </article>
 
       {/* Section Two Most Searched Breed*/}
-      <article className=" w-full px-20 h-[35rem] flex overflow-hidden bg-themeIdk pt-10">
+      <article className=" w-full px-20 h-[35rem] flex  bg-themeIdk pt-10">
         <div className="flex flex-col gap-y-8 w-full">
           <h1 className="text-themeBlack  font-semibold text-2xl relative h-10">
             Most Searched Breeds
