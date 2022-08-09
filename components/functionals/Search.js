@@ -21,8 +21,8 @@ const Search = () => {
     }
   }, [input]);
   const resultMenuVariants = {
-    open: { y: 140, opacity: 1 },
-    close: { y: -10, opacity: 0 },
+    open: { y: 80, opacity: 1 },
+    close: { y: -10, opacity: 0, height: 0 },
   };
   return (
     <label className="  relative flex  items-center  bg-white text-themeBlack rounded-full sm:px-5 px-2  sm:h-14 h-8 w-[80%] ">
@@ -44,7 +44,7 @@ const Search = () => {
       <motion.div
         variants={resultMenuVariants}
         animate={isOpen ? "open" : "close"}
-        className="sm:absolute fixed left-2 sm:h-48 h-full top-[6rem] z-[9999] bg-white  p-2 py-4 w-[95%]    rounded-2xl "
+        className="sm:absolute fixed left-2 sm:h-48 h-full top-[10rem] sm:top-0 z-[9999] bg-white  p-2 py-4 w-[95%]  sm:w-full   rounded-2xl "
       >
         <div className="w-full h-full  overflow-auto">
           {result.length == 0 ? (
