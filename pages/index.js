@@ -1,31 +1,41 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../components/Logo";
 import Search from "../components/functionals/Search";
-import Link from "next/link";
-import { BsArrowRightShort } from "react-icons/bs";
+import Link from "../components/index/Link";
 import DiscoverBreedCard from "../components/index/DiscoverBreedCard";
+import Image from "next/image";
 
 const Index = ({ catBreeds }) => {
   let [slicedCatBreeds, setSlicedCatBreeds] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     let sliced = [];
     for (let index = 0; index < 4; index++) {
       sliced.push(catBreeds[Math.floor(Math.random() * catBreeds.length)]);
       setSlicedCatBreeds(sliced);
     }
+    if (window.innerHeight >= 375 || window.innerHeight < 1024) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
   }, []);
   return (
-    <main className=" w-full h-[calc(100vh-3.5rem)] ">
+    <main className=" w-full  min-h-[calc(100vh-3.5rem)] ">
       {/* Section Hero 1 */}
       <article
-        style={{ backgroundImage: "url('/heroimagelg.png')" }}
-        className=" bg-bottom bg-cover w-full rounded-tr-[4rem] rounded-tl-[4rem] px-20 h-[30rem] flex "
+        style={{
+          backgroundImage: `url(${
+            isMobile ? "/heroimagemd.png" : "/heroimagelg.png"
+          })`,
+        }}
+        className=" bg-bottom bg-cover  bg-no-repeat  rounded-tr-[4rem] rounded-tl-[4rem] sm:px-20 px-10 sm:h-[30rem] h-[12rem]  flex "
       >
-        <div className="w-[28%]  h-full flex flex-col justify-center items-start">
-          <div className=" invert mb-2">
-            <Logo width={18} height={7} />
+        <div className="  h-full flex flex-col w-1/2 sm:w-[28%] justify-center items-start">
+          <div className=" invert sm:mb-2">
+            <Logo width={isMobile ? 6 : 14} height={isMobile ? 3 : 10} />
           </div>
-          <h1 className="text-white mb-10 text-2xl w-[90%]">
+          <h1 className="text-white sm:mb-10 sm:text-2xl text-xs mb-4">
             Get to know more about your cat bread
           </h1>
           <Search />
@@ -33,31 +43,72 @@ const Index = ({ catBreeds }) => {
       </article>
 
       {/* Section Two Most Searched Breed*/}
-      <article className=" w-full px-20 h-[35rem] flex  bg-themeIdk pt-10">
-        <div className="flex flex-col gap-y-8 w-full">
+      <article className=" w-full sm:px-20 px-8 h-[35rem] flex  bg-themeIdk sm:pt-10 pt-4   ">
+        <div className="flex flex-col sm:gap-y-8 gap-y-4 w-full">
           <h1 className="text-themeBlack  font-semibold text-2xl relative h-10">
             Most Searched Breeds
             <div className="absolute w-20 h-1 bg-themeBlack/70 bottom-1 left-0"></div>
           </h1>
           <div className="flex items-end justify-between">
-            <h2 className="text-[2.5rem] leading-[3rem] font-bold tracking-wider">
-              {catBreeds.length}+ Breeds For you <br /> to discover
+            <h2 className="sm:text-[2.5rem] text-lg sm:leading-[3rem] font-bold tracking-wider">
+              {catBreeds.length}+ Breeds For you to discover
             </h2>
-            <Link href={"/"}>
-              <a className="uppercase font-semibold flex items-center justify-center gap-x-1 group">
-                <p>see more</p>
-                <BsArrowRightShort
-                  size={23}
-                  className=" group-hover:translate-x-[2px] transition-transform"
-                />
-              </a>
+            <Link href={"/cats"} isHidden={true}>
+        See More
             </Link>
           </div>
-          <div className="h-60  w-full flex  justify-around ">
+          <div className="grid sm:grid-cols-4 place-items-center sm:grid-rows-1 gap-x-10 grid-rows-2 grid-cols-2  sm:h-60 h-96 ">
             {catBreeds &&
               slicedCatBreeds.map((cat, indeks) => (
                 <DiscoverBreedCard cat={cat} key={indeks} />
               ))}
+          </div>
+        </div>
+      </article>
+      {/* Section 3 Why should you have a cat */}
+      <article className="h-[35rem] hidden  px-28  justify-between ">
+        <div className="w-1/2h h-full flex justify-center flex-col gap-y-10  ">
+          <div className="relative text-themeBlack ">
+            <h1 className="text-5xl font-bold tracking-wider leading-[3rem]">
+              Why should you <br />
+              have a cat ?
+            </h1>
+            <div className="absolute -top-3 left-0 h-1 w-1/4 bg-themeBlack"></div>
+          </div>
+          <p className="font-semibold text-lg">
+            Having a cat around you can actually trigger the <br /> relase of
+            calming chemicals in your body which <br /> lower your stress and
+            anxiety levels
+          </p>
+          <Link href={"/nemne"}>read more</Link>
+        </div>
+        <div className="grid w-1/2 grid-cols-2 grid-rows-2  gap-x-5 py-6">
+          <div className="w-[19rem] hover:scale-[1.02] transition-transform cursor-pointer  self-start col-start-1 row-start-1 h-[11rem] relative overflow-hidden rounded-2xl">
+            <Image
+              src={"/image 2.png"}
+              layout="fill"
+              placeholder="blur"
+              blurDataURL="/image 2.png"
+              objectFit="cover"
+            />
+          </div>
+          <div className="w-[15rem]  hover:scale-[1.02] transition-transform cursor-pointer col-start-2   h-[24rem]  relative overflow-hidden rounded-2xl">
+            <Image
+              src={"/image 3.png"}
+              layout="fill"
+              placeholder="blur"
+              blurDataURL="/image 2.png"
+              objectFit="cover"
+            />
+          </div>
+          <div className=" w-[13rem] hover:scale-[1.02] transition-transform cursor-pointer   h-[20rem]  col-start-1 row-start-2   justify-self-end  self-end     relative overflow-hidden rounded-2xl">
+            <Image
+              src={"/image 1.png"}
+              layout="fill"
+              placeholder="blur"
+              blurDataURL="/image 2.png"
+              objectFit="cover"
+            />
           </div>
         </div>
       </article>

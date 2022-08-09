@@ -25,7 +25,7 @@ const Search = () => {
     close: { y: -10, opacity: 0 },
   };
   return (
-    <label className="  relative flex  items-center  bg-white text-themeBlack rounded-full px-5  h-14 w-full ">
+    <label className="  relative flex  items-center  bg-white text-themeBlack rounded-full sm:px-5 px-2  sm:h-14 h-8 w-[80%] ">
       <input
         value={input}
         onChange={(e) => {
@@ -37,14 +37,14 @@ const Search = () => {
           }
         }}
         type={"text"}
-        className="w-full h-full outline-none  bg-transparent placeholder:text-themeBlack "
+        className="w-full h-full outline-none   sm:text-base text-xs  bg-transparent placeholder:text-themeBlack "
         placeholder="Enter Your Breed"
       />
       <AiOutlineSearch size={23} />
       <motion.div
         variants={resultMenuVariants}
         animate={isOpen ? "open" : "close"}
-        className="absolute  right-0 h-48 z-[9999] bg-white  p-2 py-4 w-full   rounded-2xl "
+        className="sm:absolute fixed left-2 sm:h-48 h-full top-[6rem] z-[9999] bg-white  p-2 py-4 w-[95%]    rounded-2xl "
       >
         <div className="w-full h-full  overflow-auto">
           {result.length == 0 ? (
@@ -62,7 +62,7 @@ const Search = () => {
             )
           ) : (
             result.map((cat, indeks) => (
-              <Link href={`cats/${cat.id}`}>
+              <Link href={`cats/${cat.id}`} key={indeks}>
                 <a className="h-12 w-full flex rounded-lg items-center px-2 hover:bg-gray-200">
                   {cat.name}
                 </a>
